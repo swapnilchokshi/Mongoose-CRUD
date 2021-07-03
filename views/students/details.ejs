@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Detail</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        h1 {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        h3 {
+            padding: 10px;  
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            font-size: large;
+            border: 1px solid black;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Name: <%= student.name %> <br>
+        Roll number: <%= student.roll %> <br>
+        Gender: <%= student.gender %> <br>
+        <% if(student.std){ %>
+        Standard: <%= student.std %><br>
+        <%}%>
+    </h1>
+
+    <button><a href="/students/<%=student._id%>/edit">Edit Data</a></button>
+
+    <form action="/students/<%=student._id%>?_method=DELETE" method="post">
+        <button>Delete Data</button>
+    </form>
+
+    <button><a href="/students">Back to All Students</a></button>
+</body>
+</html>

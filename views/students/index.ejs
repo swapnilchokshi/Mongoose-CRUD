@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        h1 {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        h3 {
+            padding: 10px;  
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            font-size: large;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Students</h1>
+    <p>Click on the names for details.</p>
+    <h3>
+    <% for(let each of students) {%>
+        <a href="/students/<%= each._id %>"><%= each.name %></a><br>
+    <% } %>
+    </h3>
+
+    <hr>
+    <p>To Enter new student data:
+        <button><a href="/students/new"> New Entry </a></button>
+    </p>
+    <hr>
+</body>
+</html>

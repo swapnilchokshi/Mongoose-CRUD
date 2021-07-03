@@ -1,0 +1,152 @@
+//Insertion using an Instance
+const student1 = new Student({name: 'Swapnil', roll: 1, gender: 'Male', std: 'XII'});
+student1.save()
+    .then(data => {
+        console.log("One Student Data added successfully.");
+        console.log(data);
+    })
+    .catch(err => {
+        console.log("Error occured during insertion.");
+        console.log(err);
+    })
+
+
+//Insertion using a Model method
+Student.insertMany([
+    {
+        name: 'Chokshi',
+        roll: 2,
+        gender: 'Male'
+    },
+    {
+        name: 'Shyam',
+        roll: 3,
+        gender: 'Female'
+    },
+    {
+        name: 'Krishna',
+        roll: 4,
+        gender: 'Female',
+        std: 'X'   
+}])
+    .then(data => {
+        console.log("Multiple Student Data added successfully");
+        console.log(data);
+    })
+    .catch(err => {
+        console.log("Error occured during multiple insertions.");
+        console.log(err);
+    })
+
+
+//Deletion
+Student.deleteOne({name: 'Chokshi'})
+    .then(msg => {
+        console.log("One item deleted successfully.");
+        console.log(msg);
+    })
+    .catch(err => {
+        console.log("Error occured during deletion.");
+        console.log(err);
+    })
+
+Student.deleteMany({gender: 'Male'})
+    .then(msg => {
+        console.log("Multiple items deleted successfully.");
+        console.log(msg);
+    })
+    .catch(err => {
+        console.log("Error occured during deletions.");
+        console.log(err);
+    })
+
+
+//Updation
+Student.updateOne({name: 'Shyam'}, {gender: 'Male'})
+    .then(msg => {
+        console.log("One item updated successfully.");
+        console.log(msg);
+    })
+    .catch(err => {
+        console.log("Error occured during updation.");
+        console.log(err);
+    })
+
+Student.updateMany({name: {$in: ['Swapnil','Shyam']}}, {std: 'IX'})
+    .then(msg => {
+        console.log("Multiple items updated successfully.");
+        console.log(msg);
+    })
+    .catch(err => {
+        console.log("Error occured during updations.");
+        console.log(err);
+    })
+
+
+//Finding
+Student.find({roll: 3})
+    .then(data => console.log(data))
+    .catch(err => {
+        console.log("Data not found.");
+        console.log(err);
+    })
+
+Student.findOne({std: 'XII'})
+    .then(data => console.log(data))
+    .catch(err => {
+        console.log("Data not found.");
+        console.log(err);
+    })
+
+
+Student.findOneAndUpdate({name: 'Krishna'}, {std: 'V'}, {new: true})
+    .then(data => console.log(data))
+
+Student.findOneAndDelete({roll: 'X'})
+    .then(msg => console.log(msg))
+
+
+
+//Methods
+const findData = async () => {
+    const foundData = await Student.find({name: 'Swapnil'});
+    console.log(foundData);
+}
+findData();
+
+const removeAll = async() => {
+    const msg = await Student.deleteMany({});
+    console.log(msg);
+}
+removeAll();
+
+
+
+//Instance Methods
+Student.insertMany({name: 'Jimmy', roll: 6, gender: 'Other'});
+
+dataSchema.methods.addStd = function () {
+    this.std = 'V';
+    return this.save();
+}
+
+const findData = async () => {
+    const foundData = await Student.findOne({name: 'Jimmy'});
+    console.log(foundData);
+
+    foundData.addStd((data, err) => {
+        console.log(data);
+    })
+}
+
+findData();
+
+
+//Static method
+dataSchema.statics.cleanRoll = function () {
+    return this.updateMany({}, {roll: 0});
+};
+
+Student.cleanRoll().then(res => console.log(res))
+
+

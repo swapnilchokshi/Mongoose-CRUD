@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert New Student Data</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        h1 {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        label {
+            padding: 10px;
+        }
+
+        p {
+            padding: 5px;
+        }
+
+        button {
+            font-size: large;
+            border: 1px solid black;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter details for adding a new student.</h1>
+    <form action="/students" method="post">
+        <p>
+            <label>Enter Name:</label>
+            <input type="text" name="name" required>
+        </p>
+        <p>
+            <label>Enter Roll number:</label>
+            <input type="number" name="roll" required>
+        </p>
+        <p>
+            <label>Select Gender:</label>
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </p>
+        <p>
+            <label>Enter Standard:</label>
+            <input type="text" name="std">
+        </p>
+        <hr>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

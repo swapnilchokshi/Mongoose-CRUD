@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student Data</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        h1 {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        label {
+            padding: 10px;
+        }
+        
+        a{
+            text-decoration: none;
+        }
+
+        p {
+            padding: 5px;
+        }
+
+        button {
+            font-size: large;
+            border: 1px solid black;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update details for an existing student</h1>
+    <form action="/students/<%=student._id%>?_method=PUT" method="post">
+        <p>
+            <label>Enter Name:</label>
+            <input type="text" name="name" value="<%= student.name %>">
+        </p>
+        <p>
+            <label>Enter Roll number:</label>
+            <input type="number" name="roll" value="<%= student.roll %>">
+        </p>
+        <p>
+            <label>Select Gender:</label>
+            <select name="gender" value="<%= student.gender %>">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </p>
+        <p>
+            <label>Enter Standard:</label>
+            <input type="text" name="std" value="<%= student.std %>">
+        </p>
+        <hr>
+        <button type="submit">Submit</button>
+    </form>
+
+    <button><a href="/students/<%=student._id%>">Cancel</a></button>
+</body>
+</html>
